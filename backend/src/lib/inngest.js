@@ -20,6 +20,7 @@ const syncUser = inngest.createFunction(
             profileImage: image_url
         }
         await User.create(newUser)
+        // todo: do something else
     })
 
 const deleteUserFromDB = inngest.createFunction(
