@@ -1,10 +1,11 @@
+import path from "path"
 import express from 'express'
 import cors from 'cors'
 import { ENV } from './lib/env.js';
 import connectDB from './lib/db.js';
 import { inngest,functions } from './lib/inngest.js';
 import { serve } from "inngest/express"
-import path from "path"
+
 
 const app = express();
 const port = ENV.PORT || 8000;
@@ -30,10 +31,10 @@ app.get("/books", (req, res) => {
 
 // make our app ready for deployment
 if (ENV.NODE_ENV) {
-    app.use(express.static(path.join(__dirname, "../dist")))
+    app.use(express.static(path.join(__dirname, "..frontend/dist")))
 
-    app.get("/{*any}", (req, res) => {
-        res.sendFile(path.join(__dirname, "../dist/index.html"))
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
     })
 }
 app.get("/", (req, res) => {
