@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import { ENV } from './lib/env.js';
 import connectDB from './lib/db.js';
-import { inngest,functions } from './lib/inngest.js';
+import { inngest, functions } from './lib/inngest.js';
 import { serve } from "inngest/express"
 
 
@@ -34,7 +34,7 @@ if (ENV.NODE_ENV) {
     // app.use(express.static(path.join(__dirname, "..frontend/dist")))
     app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
-    app.get("*", (req, res) => {
+    app.get("/{*any}", (req, res) => {
         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
     })
 }
