@@ -31,7 +31,8 @@ app.get("/books", (req, res) => {
 
 // make our app ready for deployment
 if (ENV.NODE_ENV) {
-    app.use(express.static(path.join(__dirname, "..frontend/dist")))
+    // app.use(express.static(path.join(__dirname, "..frontend/dist")))
+    app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
     app.get("*", (req, res) => {
         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
@@ -40,7 +41,6 @@ if (ENV.NODE_ENV) {
 app.get("/", (req, res) => {
     res.status(200).json({ msg: "success from backend" })
 })
-// app.get("/api/inngest",serve({client:inngest, functions}))
 
 const startServer = async () => {
     try {
