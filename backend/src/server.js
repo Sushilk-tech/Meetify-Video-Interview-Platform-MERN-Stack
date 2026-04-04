@@ -7,6 +7,7 @@ import connectDB from './lib/db.js';
 import { inngest, functions } from './lib/inngest.js';
 import { serve } from "inngest/express"
 import { protectRoute } from "./middlewares/protectRoute.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
 
 const app = express();
@@ -24,14 +25,11 @@ app.use(cors(
 ));
 app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
 app.use("/api/inngest", serve({ client: inngest, functions }))
-
+app.use("/api/chat",chatRoutes)
 app.get("/health", (req, res) => {
-    req.auth;
     res.status(200).json({ msg: "api is up and running" })
 })
-app.get("/books", (req, res) => {
-    res.status(200).json({ msg: "this is the books endpoint" })
-})
+
 // when you pass an array of middleware to Express. it automatically flatterns and executes them sequentially, one by one
 app.get("/video-calls", protectRoute, (req,res)=>{
     res.status(200).json({msg:"this is a protected route"});
