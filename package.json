@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Sushilk-tech/Meetify-Video-Interview-Platform-MERN-Stack#readme",
   "dependencies": {
-    "@clerk/express": "^1.7.41"
+    "@clerk/express": "^1.7.41",
+    "canvas-confetti": "^1.9.3",
+    "react-resizable-panels": "^3.0.6"
   }
 }
